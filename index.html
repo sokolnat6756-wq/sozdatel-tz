@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конструктор ТЗ для цифрового продукта</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1>От идеи — к понятному ТЗ</h1>
+      <p class="subtitle">Опишите свой продукт, ответьте на вопросы и получите задание для разработки.</p>
+      <p class="hint-box">ТЗ описывает, что нужно создать. PRD — документ о том, для кого создаётся продукт, какую задачу он решает и каким требованиям должен соответствовать.</p>
+    </header>
+
+    <div class="layout">
+      <main class="form-column">
+        <form id="spec-form" novalidate>
+          <!-- Блок 1 -->
+          <section class="block" aria-labelledby="block1-title">
+            <h2 id="block1-title">1. Идея</h2>
+
+            <div class="field">
+              <label for="project-name">Название проекта <span class="optional">(необязательно)</span></label>
+              <p class="field-hint">Как вы хотите называть продукт в документе.</p>
+              <input type="text" id="project-name" name="projectName" placeholder="Например: Планировщик привычек" autocomplete="off">
+            </div>
+
+            <div class="field">
+              <label for="product-idea">Что хотите создать? <span class="required" aria-hidden="true">*</span></label>
+              <p class="field-hint">Кратко опишите идею своими словами.</p>
+              <textarea id="product-idea" name="productIdea" rows="4" required placeholder="Например: Сайт, где пользователь отмечает ежедневные привычки и видит прогресс за неделю"></textarea>
+              <p class="field-error" id="error-product-idea" hidden></p>
+            </div>
+
+            <fieldset class="field">
+              <legend>Тип продукта <span class="required" aria-hidden="true">*</span></legend>
+              <p class="field-hint">Выберите наиболее подходящий вариант.</p>
+              <div class="radio-group" role="radiogroup" aria-required="true">
+                <label class="choice"><input type="radio" name="productType" value="Сайт" checked> Сайт</label>
+                <label class="choice"><input type="radio" name="productType" value="Веб-приложение"> Веб-приложение</label>
+                <label class="choice"><input type="radio" name="productType" value="Telegram-бот"> Telegram-бот</label>
+                <label class="choice"><input type="radio" name="productType" value="Мини-сервис"> Мини-сервис</label>
+                <label class="choice"><input type="radio" name="productType" value="Другое"> Другое</label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="audience">Для кого создаётся продукт? <span class="required" aria-hidden="true">*</span></label>
+              <p class="field-hint">Кто будет пользоваться продуктом.</p>
+              <textarea id="audience" name="audience" rows="2" required placeholder="Например: Студенты, которые хотят лучше организовать учёбу"></textarea>
+              <p class="field-error" id="error-audience" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="user-task">Какую задачу пользователя он решает? <span class="required" aria-hidden="true">*</span></label>
+              <p class="field-hint">Какую проблему или потребность закрывает продукт.</p>
+              <textarea id="user-task" name="userTask" rows="2" required placeholder="Например: Помогает не забывать важные дела и видеть, что уже сделано"></textarea>
+              <p class="field-error" id="error-user-task" hidden></p>
+            </div>
+          </section>
+
+          <!-- Блок 2 -->
+          <section class="block" aria-labelledby="block2-title">
+            <h2 id="block2-title">2. Первая версия</h2>
+
+            <div class="field" id="actions-field">
+              <span class="label-like" id="actions-label">Какие основные действия сможет выполнять пользователь? <span class="required" aria-hidden="true">*</span></span>
+              <p class="field-hint">Для первой версии желательно выбрать 3–5 действий. Хотя бы одно действие обязательно.</p>
+              <div id="actions-list" class="dynamic-list" aria-labelledby="actions-label"></div>
+              <button type="button" class="btn btn-secondary" id="add-action">Добавить действие</button>
+              <p class="field-error" id="error-actions" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="pages">Какие страницы, экраны или разделы нужны?</label>
+              <p class="field-hint">Перечислите основные экраны первой версии.</p>
+              <textarea id="pages" name="pages" rows="3" placeholder="Например:&#10;Главная&#10;Список привычек&#10;Страница прогресса"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="input-data">Какие данные пользователь вводит?</label>
+              <p class="field-hint">Что человек заполняет или выбирает в интерфейсе.</p>
+              <textarea id="input-data" name="inputData" rows="3" placeholder="Например: Название привычки, отметку о выполнении, дату"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="user-result">Какой результат получает?</label>
+              <p class="field-hint">Что видит или получает пользователь после действий.</p>
+              <textarea id="user-result" name="userResult" rows="3" placeholder="Например: Список привычек с отметками и простой график за неделю"></textarea>
+            </div>
+
+            <fieldset class="field flags">
+              <legend>Нужны ли регистрация, оплата, сохранение данных и AI?</legend>
+              <p class="field-hint">Если пока не уверены — оставьте «Пока не знаю».</p>
+
+              <div class="flag-row">
+                <span class="flag-label" id="flag-auth-label">Регистрация / вход</span>
+                <div class="radio-inline" role="radiogroup" aria-labelledby="flag-auth-label">
+                  <label class="choice"><input type="radio" name="flagAuth" value="Нет"> Нет</label>
+                  <label class="choice"><input type="radio" name="flagAuth" value="Да"> Да</label>
+                  <label class="choice"><input type="radio" name="flagAuth" value="Пока не знаю" checked> Пока не знаю</label>
+                </div>
+              </div>
+
+              <div class="flag-row">
+                <span class="flag-label" id="flag-pay-label">Оплата</span>
+                <div class="radio-inline" role="radiogroup" aria-labelledby="flag-pay-label">
+                  <label class="choice"><input type="radio" name="flagPay" value="Нет"> Нет</label>
+                  <label class="choice"><input type="radio" name="flagPay" value="Да"> Да</label>
+                  <label class="choice"><input type="radio" name="flagPay" value="Пока не знаю" checked> Пока не знаю</label>
+                </div>
+              </div>
+
+              <div class="flag-row">
+                <span class="flag-label" id="flag-save-label">Сохранение данных</span>
+                <div class="radio-inline" role="radiogroup" aria-labelledby="flag-save-label">
+                  <label class="choice"><input type="radio" name="flagSave" value="Нет"> Нет</label>
+                  <label class="choice"><input type="radio" name="flagSave" value="Да"> Да</label>
+                  <label class="choice"><input type="radio" name="flagSave" value="Пока не знаю" checked> Пока не знаю</label>
+                </div>
+              </div>
+
+              <div class="flag-row">
+                <span class="flag-label" id="flag-ai-label">AI / нейросеть</span>
+                <div class="radio-inline" role="radiogroup" aria-labelledby="flag-ai-label">
+                  <label class="choice"><input type="radio" name="flagAi" value="Нет"> Нет</label>
+                  <label class="choice"><input type="radio" name="flagAi" value="Да"> Да</label>
+                  <label class="choice"><input type="radio" name="flagAi" value="Пока не знаю" checked> Пока не знаю</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="out-of-scope">Что пока НЕ нужно включать в первую версию?</label>
+              <p class="field-hint">Функции, которые сознательно откладываете.</p>
+              <textarea id="out-of-scope" name="outOfScope" rows="3" placeholder="Например: Мобильное приложение, уведомления, социальные функции"></textarea>
+            </div>
+          </section>
+
+          <!-- Блок 3 -->
+          <section class="block" aria-labelledby="block3-title">
+            <h2 id="block3-title">3. Оформление и ограничения</h2>
+            <p class="block-note">Эти поля описывают будущий продукт, а не оформление самого конструктора.</p>
+
+            <div class="field">
+              <label for="design-style">Желаемый стиль, цвета и настроение</label>
+              <p class="field-hint">Как должен выглядеть и ощущаться ваш продукт.</p>
+              <textarea id="design-style" name="designStyle" rows="3" placeholder="Например: Светлый, спокойный, зелёные акценты, без лишних украшений"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="references">Примеры или ссылки на референсы</label>
+              <p class="field-hint">Сайты, приложения или описания, на которые хотите ориентироваться.</p>
+              <textarea id="references" name="references" rows="3" placeholder="Например: https://example.com — нравится простота меню"></textarea>
+            </div>
+
+            <fieldset class="field">
+              <legend>Где будут пользоваться продуктом?</legend>
+              <p class="field-hint">Выберите одно или несколько устройств.</p>
+              <div class="checkbox-group">
+                <label class="choice"><input type="checkbox" name="device" value="Компьютер"> Компьютер</label>
+                <label class="choice"><input type="checkbox" name="device" value="Телефон"> Телефон</label>
+                <label class="choice"><input type="checkbox" name="device" value="Оба"> Оба</label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="tech">Технологии или платформа, если уже выбраны</label>
+              <p class="field-hint">Оставьте пустым, если ещё не решили — в ТЗ появится просьба предложить технологии.</p>
+              <textarea id="tech" name="tech" rows="2" placeholder="Например: HTML, CSS, JavaScript или Telegram Bot API"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="constraints">Дополнительные ограничения и пожелания</label>
+              <p class="field-hint">Сроки, бюджет, языки, особые требования — только то, что уже известно.</p>
+              <textarea id="constraints" name="constraints" rows="3" placeholder="Например: Без сервера, открывается локально в браузере"></textarea>
+            </div>
+          </section>
+
+          <!-- Блок 4 -->
+          <section class="block" aria-labelledby="block4-title">
+            <h2 id="block4-title">4. Проверка результата</h2>
+
+            <div class="field">
+              <label for="success-signal">Как пользователь поймёт, что продукт работает?</label>
+              <p class="field-hint">По какому видимому результату можно судить об успехе.</p>
+              <textarea id="success-signal" name="successSignal" rows="3" placeholder="Например: Привычка появляется в списке, отметка сохраняется после обновления страницы"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="must-work">Какие действия обязательно должны успешно выполняться?</label>
+              <p class="field-hint">Критерии приёмки первой версии.</p>
+              <textarea id="must-work" name="mustWork" rows="3" placeholder="Например:&#10;Добавить привычку&#10;Отметить выполнение&#10;Увидеть прогресс за неделю"></textarea>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="build-btn">Собрать ТЗ</button>
+            <button type="button" class="btn btn-secondary" id="clear-btn">Очистить</button>
+          </div>
+        </form>
+      </main>
+
+      <aside class="result-column" aria-labelledby="result-title">
+        <h2 id="result-title">Ваше ТЗ</h2>
+        <label for="result" class="visually-hidden">Готовый документ ТЗ</label>
+        <textarea id="result" class="result-area" rows="28" spellcheck="true" placeholder="Здесь появится готовое ТЗ после нажатия «Собрать ТЗ»."></textarea>
+        <p class="result-hint">Проверьте документ, дополните детали и вставьте его в Cursor или другое приложение для разработки.</p>
+      </aside>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
